@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map with Markers of locos</title>
+</head>
+
+<body>    
+    <h2>Location of locomotives</h2>
+    <ul>
+        <li class="navbar__btn">
+            <a href="generator.html" class="button">Generator</a>
+        </li>
+        <li class="navbar__btn">
+            <a href="locomotive.html" class="button">Loco</a>
+        </li>
+        <li>
+            <a href="Home.html" class="button">Home</a>
+        </li>
+    </ul>
+
+    <div id="map"></div>
+    <script>
+        function initMap() {
+        // Map options
+        var options = {
+            zoom: 8,
+            center: { lat: 40.7128, lng: -74.0060 } // New York City coordinates
+        };
+
+        // Create a new map object
+        var map = new google.maps.Map(document.getElementById('map'), options);
+
+        // Add markers
+        var markers = [
+            {
+                coords: { lat: -20.7128, lng: 28.7360 },
+                content: '<h1>Bulawayo</h1>'
+            }
+        ];
+
+        // Loop through markers
+        for (var i = 0; i < markers.length; i++) {
+            addMarker(markers[i]);
+        }
+
+        // Add Marker function
+        function addMarker(props) {
+            var marker = new google.maps.marker.AdvancedMarkerElement({
+                position: props.coords,
+                map: map
+            });
+
+            // Check for custom content
+            if (props.content) {
+                var infoWindow = new google.maps.InfoWindow({
+                    content: props.content
+                });
+
+                marker.addListener('click', function () {
+                    infoWindow.open(map, marker);
+                });
+            }
+        }
+    }
+    </script>
+
+    <style>
+        #map {
+            height: 800px;
+            width: 100%;
+        }
+
+        h2{
+            color: blanchedalmond;
+            background-color: blueviolet;
+            padding: 10px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+        ul{
+            display: flex;
+            list-style: none;
+            text-decoration: none;
+            text-align: center;
+        }
+        ul li{
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+        }
+        .button{
+            background-color: rgb(33, 16, 59);
+            color: aliceblue;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover{
+            background-color: rgb(116, 131, 123);
+            color: rgb(86, 182, 185);
+        }
+
+    </style>
+
+    <script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjhQruv59TBIz_wd3oSXuEaudvCbQl6ss&loading=async&callback=initMap">
+    </script>
+</body>
+</html>
+
+

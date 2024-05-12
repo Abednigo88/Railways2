@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+  </head>
+  <body>
+
+    <h2><b>The loco is in this area.</b></h2>   
+    <div id="map"></div>
+    <style>
+      #map {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          position:absolute;
+        }
+
+        body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+          background-color: blue;
+        }
+        h2{
+          text-decoration: none;
+          background-color: blue;
+          color: antiquewhite;
+          border-radius: 10px;
+          text-align: center;
+        }
+    </style>
+    <script>    
+      // Get the map element
+      const mapElement = document.getElementById("map");
+
+      // Create an iframe element
+      const iframe = document.createElement("iframe");
+
+      // Set the source of the iframe to the Google Maps URL
+      iframe.src = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d59915.141550527456!2d28.5540352!3d-20.1883648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2szw!4v1713990251357!5m2!1sen!2szw";
+
+      // Set the style of the iframe to fill the map element
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      iframe.style.border = "0";
+      allowfullscreen=""; 
+      loading="lazy"; 
+      referrerpolicy="no-referrer-when-downgrade";
+      // Append the iframe to the map element
+      mapElement.appendChild(iframe);
+    </script>
+  </body>
+</html>

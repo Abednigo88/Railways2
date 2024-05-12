@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Location</title>
+</head>
+<body>
+    <div class="header_cont">
+        <h1><b>Location of Loco2102</b></h1>
+        <ul>
+            <li><a href="Home.html" class="button">HOME</a></li>
+            <li><a href="locationToMap.html" class="button">Map</a></li><!--put the link to the maps api here-->
+            <li><a href="mapp.html" class="button">Map View</a></li>
+            <li><a href="generator.html" class="button">Generator</a></li>
+        </ul>
+    </div>
+    
+    <div id="coordinates">
+        <p id="latitude">Latitude: </p><br>
+        <p id="longitude">Longitude: </p><br>
+        <p id= "speed" >Speed: </p><br>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 20px;
+            margin-left: 50px;
+            margin-right: 50px;
+            text-justify: auto;
+            background-image: url("images/black\ and\ white\ station.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: auto;
+        }
+
+        /* Style the header container */
+        .header_cont h1{
+            text-align: center;
+            padding: 10px;
+            background: transparent;
+        }
+
+        .header_cont ul li{
+            display: inline;
+            margin-right: 10px;
+            align-items: left;
+            text-decoration: none;
+            background: transparent;
+        }
+
+        .button{
+            display: flext;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            padding: 5px 7px;
+            height: 100%;
+            width: 100%;
+            border: navy;
+            outline: navajowhite;
+            border-radius: 4px;
+            background: #a3a1a1;
+            color: rgb(0, 0, 0);
+        }
+        .button:hover{
+            background: #f3f056;
+            transition: all 0.3s ease;
+        }
+        #coordinates { /*you edit the lat and loc text here*/
+            text-align: center;
+            margin: 20px;
+            color: rgb(0, 0, 0);
+            background-color: rgb(177, 177, 177);
+            text-decoration: rgb(0, 0, 0);
+            padding-top: 2px;
+        }
+    </style>
+
+    <script>
+        function fetchData() {
+            fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                // Access the required fields from the JSON response
+                const latitude = data.LLLatitude;
+                const longitude = data.LLongitude;
+                const speed = data.SSSpeed;
+        
+                // Update the HTML elements with the received values
+                document.getElementById('latitude').textContent = `Latitude: ${latitude}`;
+                document.getElementById('longitude').textContent = `Longitude: ${longitude}`;
+                document.getElementById('speed').textContent = `Speed: ${speed}`;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        // Fetch the data when the page loads
+        document.addEventListener('DOMContentLoaded', fetchData);
+    </script>
+</body>
+</html>

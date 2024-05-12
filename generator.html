@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator Parameter Monitoring</title>
+</head>
+<body>
+    <div>
+        
+        <ul>
+            <li><a href="Home.html"><button>Go to Home Page</button></a></li>
+            <li><a href="locomotive.html"><button>Go to Trains page</button></a></li>
+        </ul>
+    
+    </div>
+
+    <div class="container">
+        <h1>Generator Parameter Monitoring</h1>
+        
+        <ul>
+            <li><span><p id="temp"> Temperature: </span> <span id="temperatureValue">°C</span></li></p>
+     
+            <li><span> <p id="fuel"> Fuel Level: </span> <span id="fuel-level">%</span></li></p>
+    
+            <li><span><p id="o"> Oil Status: </span> <span id="oil"></span></li></p>
+        </ul>
+    </div>
+
+    <style>
+        body {
+            margin-top: 10px;
+            padding: 0;
+            background-image: url('genIMAGES/clouds.jpg'); /* Replace 'background-image.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        div ul{
+            list-style-type: none;
+            display: inline;
+            text-size-adjust: 16px;
+        }
+        .button{
+            margin-top: 2em;
+            text-decoration: none;
+            display: block;
+            text-align: right;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .container {
+            width: 80%;
+            margin-top: auto;
+            text-align: center;
+            background: transparent;
+            padding-top: 5px; /* Adjust as needed */
+            margin-top: 80px;
+            color: rgb(85, 220, 230);
+        }
+        .parameter {
+            margin-bottom: 50px;
+            margin-top: 50px
+            /*background: transparent;*/
+            padding: 2rem;
+            font-weight: bold;
+            font-size: 28px;
+            color: #2aecbc
+        }
+        .parameter span {
+            font-weight: bold;
+        }
+
+    </style>
+    
+    <script>
+            // Generate random values for temperature, fuel level, and oil status
+        function generateRandomValues() {
+        const temperatureValue = Math.floor(Math.random() * 101); // Random number between 0 and 100
+        const fuelLevelValue = Math.floor(Math.random() * 101); // Random number between 0 and 100
+        const oilStatus = Math.floor(Math.random()*100)< 50? 'Okay' : 'REFILL'; // Randomly assign 'Okay' or 'Critical'
+
+        // Update the text content of the elements with the generated values
+        document.getElementById('temperatureValue').textContent = temperatureValue + '°C';
+        document.getElementById('fuel-level').textContent = fuelLevelValue + '%';
+        document.getElementById('oil').textContent = oilStatus;
+        }
+
+        // Call the generateRandomValues function initially
+        generateRandomValues();
+
+        // Call the generateRandomValues function every 5 seconds (for demonstration purposes)
+        setInterval(generateRandomValues, 1000);
+    </script>
+</body>
+</html>
