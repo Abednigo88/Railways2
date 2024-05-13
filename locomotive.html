@@ -78,26 +78,25 @@
     </style>
 
     <script>
-        function fetchData() {
-            fetch('/data')
-            .then(response => response.json())
-            .then(data => {
-                // Access the required fields from the JSON response
-                const latitude = data.LLLatitude;
-                const longitude = data.LLongitude;
-                const speed = data.SSSpeed;
-        
-                // Update the HTML elements with the received values
-                document.getElementById('latitude').textContent = `Latitude: ${latitude}`;
-                document.getElementById('longitude').textContent = `Longitude: ${longitude}`;
-                document.getElementById('speed').textContent = `Speed: ${speed}`;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+        // Function to fetch and display data
+    function fetchData() {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          var data = JSON.parse(xhr.responseText);
+          var dataDiv = document.getElementById("data");
+          dataDiv.innerHTML = "<p>Latitude: " + data.LLLatitde + "</p>" +
+                              "<p>Longitude: " + data.LLLongitude + "</p>" +
+                              "<p>Speed: " + data.SSSpeed + "</p>" +
+                              "<p>Locomotive Name: " + data.LocoName + "</p>";
         }
-        // Fetch the data when the page loads
-        document.addEventListener('DOMContentLoaded', fetchData);
+      };
+      xhr.open("GET", "https://abednigo88.github.io/Railways2/locomotive.json", true); // Update the URL to point to your JSON file
+      xhr.send();
+    }
+
+    // Fetch data when the page loads
+    window.onload = fetchData;
     </script>
 </body>
 </html>
