@@ -85,9 +85,9 @@
         if (xhr.readyState == 4 && xhr.status == 200) {
             var data = JSON.parse(xhr.responseText);
             var dataDiv = document.getElementById("data");
-            dataDiv.innerHTML = "<p>Latitude: " + data.LLLatitde + "</p>" +
-                                "<p>Longitude: " + data.LLLongitude + "</p>" +
-                                "<p>Speed: " + data.SSSpeed + "</p>" +
+            dataDiv.innerHTML = "<p>Latitude: " + data.LLLLa + "</p>" +
+                                "<p>Longitude: " + data.LLLLo + "</p>" +
+                                "<p>Speed: " + data.SSSSp + "</p>" +
                                 "<p>Locomotive Name: " + data.LocoName + "</p>";
         }
     };
